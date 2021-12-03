@@ -14,7 +14,7 @@ class RegViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     @IBAction func passwordEye1(_ sender: UIButton) {
