@@ -21,6 +21,8 @@
 		9E38B35D274FFA6400CA13B8 /* CreateActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B35C274FFA6400CA13B8 /* CreateActivityViewController.swift */; };
 		9E38B368275D270F00CA13B8 /* StartContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B367275D270F00CA13B8 /* StartContainerViewController.swift */; };
 		9E38B36C275EF03100CA13B8 /* MyMapActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B36B275EF03100CA13B8 /* MyMapActivityCollectionViewCell.swift */; };
+		9EC66456275FA3A300C700F7 /* fefuactivity.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EC66454275FA3A300C700F7 /* fefuactivity.xcdatamodeld */; };
+		9EC66458275FA95700C700F7 /* FEFUCoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC66457275FA95700C700F7 /* FEFUCoreDataContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		9E38B35C274FFA6400CA13B8 /* CreateActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateActivityViewController.swift; sourceTree = "<group>"; };
 		9E38B367275D270F00CA13B8 /* StartContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartContainerViewController.swift; sourceTree = "<group>"; };
 		9E38B36B275EF03100CA13B8 /* MyMapActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMapActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EC66455275FA3A300C700F7 /* fefuactivity.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = fefuactivity.xcdatamodel; sourceTree = "<group>"; };
+		9EC66457275FA95700C700F7 /* FEFUCoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEFUCoreDataContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,8 @@
 				9E38B35C274FFA6400CA13B8 /* CreateActivityViewController.swift */,
 				9E38B367275D270F00CA13B8 /* StartContainerViewController.swift */,
 				9E38B36B275EF03100CA13B8 /* MyMapActivityCollectionViewCell.swift */,
+				9EC66454275FA3A300C700F7 /* fefuactivity.xcdatamodeld */,
+				9EC66457275FA95700C700F7 /* FEFUCoreDataContainer.swift */,
 			);
 			path = fefuactivity;
 			sourceTree = "<group>";
@@ -168,10 +174,12 @@
 				9E38B35B274FEF9200CA13B8 /* MyActivityViewController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */,
 				9E38B368275D270F00CA13B8 /* StartContainerViewController.swift in Sources */,
+				9EC66458275FA95700C700F7 /* FEFUCoreDataContainer.swift in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
 				9E38B34F274FDB7800CA13B8 /* AuthViewController.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
 				9E38B34D274FDB6800CA13B8 /* RegViewController.swift in Sources */,
+				9EC66456275FA3A300C700F7 /* fefuactivity.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +383,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9EC66454275FA3A300C700F7 /* fefuactivity.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EC66455275FA3A300C700F7 /* fefuactivity.xcdatamodel */,
+			);
+			currentVersion = 9EC66455275FA3A300C700F7 /* fefuactivity.xcdatamodel */;
+			path = fefuactivity.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1DE4E5B9270A5CCE004A30CA /* Project object */;
 }

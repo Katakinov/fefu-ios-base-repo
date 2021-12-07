@@ -1,4 +1,5 @@
 import UIKit
+import CoreData
 
 class MyActivityViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
 
@@ -6,13 +7,26 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     
     //@IBOutlet var titleHidden: [UITextView]!
-    var indexForOne = 1
-    let activityKm = ["14.5", "22.1", "12", "1"]
-    let activityHours = ["1", "2", "2", "21"]
-    let activityName = ["bicycle", "run", "ski", "skate"]
-    let activityAgo = ["12", "2", "23", "0"]
-    var sectionName: [String] = ["October 21 2021", "December 31 2022", "October 21 2021", "December 31 2022"]
+    //var indexForOne = 1
+    //let activityKm = ["14.5", "22.1", "12", "1"]
+    //let activityHours = ["1", "2", "2", "21"]
+    //let activityName = ["bicycle", "run", "ski", "skate"]
+    //let activityAgo = ["12", "2", "23", "0"]
+    //var sectionName: [String] = ["October 21 2021", "December 31 2022", "October 21 2021", "December 31 2022"]
     var sectionNumber = 3
+    
+    struct ActivitiesTableViewCellViewModel {
+        let duration = Int()
+        let name = String()
+        let distance = Int()
+    }
+    
+    struct ActivitiesTableViewModel {
+        let date: String
+        let activities: [ActivitiesTableViewCellViewModel]
+    }
+    
+    private var data: [ActivitiesTableViewModel] = []
     
     
     override func viewDidLoad() {
@@ -24,6 +38,26 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
+    
+    private func fetch() {
+        let context = FEFUCoreDataContainer.instance.context
+        
+        let activityRequest: NSFetchRequest<CDActivity> = CDActivity.fetchRequest()
+        
+        do {
+            let rawActivities = try context.fetch(activityRequest)
+            
+            let activitesViewModels: [ActivitiesTableViewCellViewModel] = rawActivities.map { rawActivities in return ActivitiesTableViewCellViewModel()
+            }
+            self.data = [ActivitiesTableViewModel(date: "23.10", activities: )]
+            print(rawActivities)
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     
     @IBAction func startActivityButton(_ sender: UIButton) {
         emptyState.isHidden = true

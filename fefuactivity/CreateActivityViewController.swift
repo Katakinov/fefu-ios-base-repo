@@ -13,7 +13,7 @@ class CreateActivityViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var startContainer: UIView!
-    @IBOutlet weak var startButtomActivity: UIButton!
+
     
     
     let locationManager: CLLocationManager = {
@@ -60,10 +60,6 @@ class CreateActivityViewController: UIViewController {
         mapView.delegate = self
     }
     
-    @IBAction func startActivityButton(_ sender: UIButton) {
-        startContainer.isHidden = true
-        startButtomActivity.isHidden = true
-    }
 }
 
 private let userLocationIdentifier = "user_icon"

@@ -9,6 +9,8 @@ import UIKit
 
 class MyMapActivityCollectionViewCell: UICollectionViewCell {
     
+    //@IBOutlet weak var myMapCellButtonLabel: UIButton!
     @IBOutlet weak var myMapCellLabel: UILabel!
     
+    var activityTypesName = ""
 }
