@@ -12,6 +12,8 @@ import MapKit
 class CreateActivityViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var startCont: UIView!
+    @IBOutlet weak var stopCont: UIView!
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -57,6 +59,18 @@ class CreateActivityViewController: UIViewController {
         mapView.delegate = self
     }
     
+    @IBAction func startButton(_ sender: UIButton) {
+        if startCont.isHidden == false {
+            startCont.isHidden = true
+            stopCont.isHidden = false
+        }
+    }
+    
+    @IBAction func pauseButton(_ sender: UIButton) {
+    }
+    
+    @IBAction func stopButton(_ sender: UIButton) {
+    }
 }
 
 private let userLocationIdentifier = "user_icon"
