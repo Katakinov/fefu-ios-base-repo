@@ -7,6 +7,10 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     
     //@IBOutlet var titleHidden: [UITextView]!
+    var currentKM: String = "0"
+    var currentTime: String = "00"
+    var currentActivityName: String = "название"
+    var currentAgo: String = "00"
     var indexForOne = 1
     let activityKm = ["14.5", "22.1", "12", "1"]
     let activityHours = ["1", "2", "2", "21"]
@@ -14,7 +18,6 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
     let activityAgo = ["12", "2", "23", "0"]
     var sectionName = ["October 21 2021", "December 31 2022", "November 21 2019", "January 31 2010"]
     //var sectionNumber = ["1", "2", "3"]
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,7 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.register(nib, forCellReuseIdentifier: "DemoTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -97,5 +101,30 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /*let vc = segue.destination as! ShowInfoViewController*/
         performSegue(withIdentifier: "ShowInfo", sender: tableView.cellForRow(at: indexPath))
+        
+        
+        
+        
+        currentActivityName = activityName[indexPath.row]
+        currentTime = activityHours[indexPath.row]
+        currentKM = activityKm[indexPath.row]
+        currentAgo = activityAgo[indexPath.row]
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "ShowInfo" else { return }
+        guard let destination = segue.destination as? ShowInfoViewController else { return }
+        destination.activityNameInfo = String(currentActivityName)
+        destination.durationTime = String(currentTime)
+        destination.kilometr = String(currentKM)
+        destination.laterTime = String(currentAgo)
+    }
+    
+    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC: ShowInfoViewController = segue.destination as! ShowInfoViewController
+        
+        destinationVC.activityTimeInfo.text = String(currentTime)
+        destinationVC.activityLaterTime.text = String(currentAgo)
+        destinationVC.activityDistance.text = String(currentKM)
+    }*/
 }

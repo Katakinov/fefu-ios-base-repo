@@ -372,12 +372,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlK-EO-Qh3">
+                                <rect key="frame" x="40" y="88" width="115" height="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LTq-tc-Ib5"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="94d-yb-DO6" firstAttribute="top" secondItem="JN7-f5-L9Z" secondAttribute="bottom" constant="15" id="0Wn-r0-GUz"/>
                             <constraint firstItem="LTq-tc-Ib5" firstAttribute="trailing" secondItem="JN7-f5-L9Z" secondAttribute="trailing" constant="241" id="120-e2-deO"/>
+                            <constraint firstItem="JN7-f5-L9Z" firstAttribute="top" secondItem="OlK-EO-Qh3" secondAttribute="bottom" constant="21" id="34i-5Q-DI4"/>
+                            <constraint firstItem="LTq-tc-Ib5" firstAttribute="trailing" secondItem="OlK-EO-Qh3" secondAttribute="trailing" constant="220" id="8tJ-y2-MHu"/>
                             <constraint firstItem="LTq-tc-Ib5" firstAttribute="trailing" secondItem="efC-Dw-8sw" secondAttribute="trailing" constant="90" id="BGT-Dn-8fN"/>
                             <constraint firstItem="LTq-tc-Ib5" firstAttribute="trailing" secondItem="94d-yb-DO6" secondAttribute="trailing" constant="197" id="F93-5b-nWK"/>
                             <constraint firstItem="efC-Dw-8sw" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="40" id="Llo-wq-dxa"/>
@@ -388,10 +396,11 @@
                             <constraint firstItem="94d-yb-DO6" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="40" id="bUO-FU-AaW"/>
                             <constraint firstItem="TcH-NQ-UMN" firstAttribute="top" secondItem="efC-Dw-8sw" secondAttribute="bottom" constant="50" id="bcu-hx-NXZ"/>
                             <constraint firstItem="79A-Rs-3KT" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="20" id="c6u-kM-llx"/>
+                            <constraint firstItem="OlK-EO-Qh3" firstAttribute="top" secondItem="LTq-tc-Ib5" secondAttribute="top" id="chG-jE-QG0"/>
                             <constraint firstItem="JN7-f5-L9Z" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="40" id="g2g-d8-efK"/>
+                            <constraint firstItem="OlK-EO-Qh3" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="40" id="hqb-nx-YQ2"/>
                             <constraint firstItem="LTq-tc-Ib5" firstAttribute="bottom" secondItem="79A-Rs-3KT" secondAttribute="bottom" constant="90" id="k2j-ud-iMt"/>
                             <constraint firstItem="efC-Dw-8sw" firstAttribute="top" secondItem="s88-ci-hwE" secondAttribute="bottom" constant="15" id="pkO-aQ-22v"/>
-                            <constraint firstItem="JN7-f5-L9Z" firstAttribute="top" secondItem="LTq-tc-Ib5" secondAttribute="top" constant="50" id="tcR-Pj-dl3"/>
                             <constraint firstItem="LTq-tc-Ib5" firstAttribute="trailing" secondItem="79A-Rs-3KT" secondAttribute="trailing" constant="20" id="uRu-z4-bod"/>
                             <constraint firstItem="s88-ci-hwE" firstAttribute="leading" secondItem="LTq-tc-Ib5" secondAttribute="leading" constant="40" id="wTK-E1-fZP"/>
                         </constraints>
@@ -400,6 +409,7 @@
                     <connections>
                         <outlet property="activityDistance" destination="JN7-f5-L9Z" id="kgk-HB-7Vz"/>
                         <outlet property="activityLaterTime" destination="94d-yb-DO6" id="83B-tq-cQ3"/>
+                        <outlet property="activityName" destination="OlK-EO-Qh3" id="iNT-Dj-xQe"/>
                         <outlet property="activityTimeInfo" destination="s88-ci-hwE" id="M0X-Ml-Ktq"/>
                     </connections>
                 </viewController>
@@ -433,20 +443,45 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="87e-tG-8Uz">
                                                 <rect key="frame" x="24" y="60.666666666666629" width="327" height="128.66666666666666"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aCU-Pa-IPm">
-                                                    <size key="itemSize" width="128" height="128"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="aCU-Pa-IPm">
+                                                    <size key="itemSize" width="268" height="114"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U7c-3R-ij6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="nAB-G3-oGY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="activityTypes" id="U7c-3R-ij6" customClass="MapCollectionViewCell" customModule="fefuactivity" customModuleProvider="target">
+                                                        <rect key="frame" x="8" y="7.333333333333333" width="268" height="114"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" id="nAB-G3-oGY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="268" height="114"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIV-hP-dRv">
+                                                                    <rect key="frame" x="16" y="0.0" width="236" height="24"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mLh-nE-zfo">
+                                                                    <rect key="frame" x="16" y="28" width="236" height="78"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="CIV-hP-dRv" secondAttribute="trailing" constant="16" id="KLP-2E-zvd"/>
+                                                                <constraint firstAttribute="bottom" secondItem="mLh-nE-zfo" secondAttribute="bottom" constant="8" id="LbG-Hc-aHn"/>
+                                                                <constraint firstItem="CIV-hP-dRv" firstAttribute="leading" secondItem="nAB-G3-oGY" secondAttribute="leading" constant="16" id="US3-Cm-ivM"/>
+                                                                <constraint firstItem="mLh-nE-zfo" firstAttribute="top" secondItem="CIV-hP-dRv" secondAttribute="bottom" constant="4" id="ZQR-e7-LoI"/>
+                                                                <constraint firstItem="mLh-nE-zfo" firstAttribute="leading" secondItem="nAB-G3-oGY" secondAttribute="leading" constant="16" id="hKC-DX-y6N"/>
+                                                                <constraint firstAttribute="trailing" secondItem="mLh-nE-zfo" secondAttribute="trailing" constant="16" id="sMM-m0-3s3"/>
+                                                                <constraint firstItem="CIV-hP-dRv" firstAttribute="top" secondItem="nAB-G3-oGY" secondAttribute="top" id="tvc-qc-hfX"/>
+                                                            </constraints>
                                                         </collectionViewCellContentView>
+                                                        <size key="customSize" width="268" height="114"/>
+                                                        <connections>
+                                                            <outlet property="MapColCelImg" destination="mLh-nE-zfo" id="Tfo-Po-BZb"/>
+                                                            <outlet property="MapColCelLabel" destination="CIV-hP-dRv" id="fRG-5f-u7H"/>
+                                                        </connections>
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
@@ -578,9 +613,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Карта" id="zmR-d2-smt"/>
                     <connections>
+                        <outlet property="collectionView" destination="87e-tG-8Uz" id="2Nz-Ff-hK3"/>
+                        <outlet property="currentActivityDistance" destination="Jf9-cr-eev" id="JtZ-8s-xfv"/>
+                        <outlet property="currentActivityName" destination="cq8-mK-KUl" id="fy9-L3-0Za"/>
                         <outlet property="mapView" destination="eyE-k7-RF3" id="X8D-FJ-hAg"/>
                         <outlet property="startCont" destination="Ra8-Fp-cUL" id="TfY-An-3bp"/>
-                        <outlet property="stopCont" destination="o5v-oZ-X7N" id="WrZ-Ec-5jd"/>
+                        <outlet property="stopCont" destination="o5v-oZ-X7N" id="ZIl-PT-59t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8l-o3-MN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

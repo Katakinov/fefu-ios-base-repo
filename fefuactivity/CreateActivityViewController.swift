@@ -14,6 +14,16 @@ class CreateActivityViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var startCont: UIView!
     @IBOutlet weak var stopCont: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var currentActivityName: UILabel!
+    @IBOutlet weak var currentActivityDistance: UILabel!
+    
+    
+    var activityType = ["Бег", "Вело", "Прыг", "Плавь"]
+    
+    var images = [UIImage]()
+    var activityListName = [String]()
+    var currentName = ""
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -23,7 +33,7 @@ class CreateActivityViewController: UIViewController {
         return manager
     }()
     
-    var userLocation: CLLocation? {
+    fileprivate var userLocation: CLLocation? {
         didSet{
             guard let userLocation = userLocation else {
                 return
@@ -57,6 +67,14 @@ class CreateActivityViewController: UIViewController {
         
         mapView.showsUserLocation = true
         mapView.delegate = self
+        
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        for i in 0...3{
+            let image = UIImage(named: "image\(i)")!
+            images.append(image)
+        }
     }
     
     @IBAction func startButton(_ sender: UIButton) {
@@ -73,16 +91,61 @@ class CreateActivityViewController: UIViewController {
     }
 }
 
+
 private let userLocationIdentifier = "user_icon"
+
+extension CreateActivityViewController: UICollectionViewDataSource, UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return activityType.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "activityTypes", for: indexPath) as! MapCollectionViewCell
+        let img = images[indexPath.row]
+        cell.MapColCelImg.image = img
+        let label = activityType[indexPath.row]
+        cell.MapColCelLabel.text = label
+        activityListName.append(label)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        currentName = activityListName[indexPath.row]
+        self.currentActivityName.text = currentName
+    }
+}
+
+var startLocation:CLLocation!
+var lastLocation:CLLocation!
+
+var traveledDistance:Double = 0
 
 extension CreateActivityViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.first else {
+        startLocation = locations.first
+        guard let currentLocation = locations.first
+        else {
             return
         }
         print("координаты вашего устройства", currentLocation.coordinate)
+        
+        lastLocation = locations.last
+        traveledDistance += startLocation.distance(from: lastLocation)
+        
+        self.currentActivityDistance.text = String(traveledDistance)
+        
+        /*if currentLocation == nil {
+            startLocation = locations.first as! CLLocation
+        } else {
+            lastLocation = locations.last as! CLLocation
+            let distance = startLocation.distance(from: lastLocation)
+            startLocation = lastLocation
+            traveledDistance += distance
+            self.currentActivityDistance.text = String(traveledDistance)*/
     
         userLocation = currentLocation
+
     }
 }
 

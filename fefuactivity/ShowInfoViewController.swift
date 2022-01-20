@@ -10,10 +10,12 @@ import CoreLocation
 
 class ShowInfoViewController: UIViewController {
     
-    /*var kilometr = ""
+    var activityNameInfo = ""
+    var kilometr = ""
     var laterTime = ""
-    var durationTime = ""*/
+    var durationTime = ""
     
+    @IBOutlet weak var activityName: UILabel!
     @IBOutlet weak var activityDistance: UILabel!
     @IBOutlet weak var activityLaterTime: UILabel!
     @IBOutlet weak var activityTimeInfo: UILabel!
@@ -22,9 +24,10 @@ class ShowInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        /*activityDistance.text = kilometr
-        activityLaterTime.text = laterTime
-        activityTimeInfo.text = durationTime*/
+        activityDistance.text = kilometr + "км"
+        activityLaterTime.text = laterTime + "минут"
+        activityTimeInfo.text = durationTime + "минут назад"
+        activityName.text = activityNameInfo
     }
     
 }
