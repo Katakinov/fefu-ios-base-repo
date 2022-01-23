@@ -17,13 +17,27 @@ class CreateActivityViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var currentActivityName: UILabel!
     @IBOutlet weak var currentActivityDistance: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var pauseButtonOutlet: UIButton!
+    @IBOutlet weak var finishButtonOutlet: UIButton!
     
     
     var activityType = ["Бег", "Вело", "Прыг", "Плавь"]
     
+    private var coreDataContainer = CoreDataContainer.instance
+    
+    private var timer: Timer?
+    private var activityDuration: TimeInterval = TimeInterval()
+    private var startValueForTimer: Date?
+    private var currentDuration: TimeInterval = TimeInterval()
+    private var pauseFlag: Bool = true
+    private var activityDate: Date?
+    
+    private var activityDistance: CLLocationDistance = CLLocationDistance()
+    
     var images = [UIImage]()
     var activityListName = [String]()
-    var currentName = ""
+    var currentName = "Бег"
     
     let locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -41,7 +55,11 @@ class CreateActivityViewController: UIViewController {
             let region = MKCoordinateRegion(center: userLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
             mapView.setRegion(region, animated: true)
             
+            if oldValue != nil {
+                activityDistance += userLocation.distance(from: oldValue!)
+            }
             userLocationHistory.append(userLocation)
+            currentActivityDistance.text = String(format: "%.2f км", activityDistance / 1000)
         }
     }
     
@@ -57,6 +75,35 @@ class CreateActivityViewController: UIViewController {
     }
     
     private let userLocationIdentifier = "user_icon"
+    
+    @objc func timerUpdater() {
+        let time = Date().timeIntervalSince(startValueForTimer!)
+        currentDuration = time
+        let timeFormatter = DateComponentsFormatter()
+        timeFormatter.allowedUnits = [.hour, .minute, .second]
+        timeFormatter.zeroFormattingBehavior = .pad
+        
+        timerLabel.text = timeFormatter.string(from: time + activityDuration)
+    }
+    
+    private var timeFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute, .second]
+        formatter.zeroFormattingBehavior = .pad
+        return formatter
+    }()
+    
+    private var timeShortFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return formatter
+    }()
+    
+    private var dateFormatter: DateFormatter = {
+       let formatter = DateFormatter()
+        formatter.dateStyle = .long
+        return formatter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,17 +124,62 @@ class CreateActivityViewController: UIViewController {
         }
     }
     
-    @IBAction func startButton(_ sender: UIButton) {
+    @IBAction func startButton(_ sender: Any) {
         if startCont.isHidden == false {
             startCont.isHidden = true
             stopCont.isHidden = false
         }
     }
     
-    @IBAction func pauseButton(_ sender: UIButton) {
+    @IBAction func pauseButton(_ sender: Any) {
+        userLocationHistory = []
+        userLocation = nil
+        
+        if !pauseFlag {
+            pauseButtonOutlet.setImage(UIImage(named: "play"), for: .normal)
+            activityDuration += currentDuration
+            currentDuration = TimeInterval()
+            timer?.invalidate()
+            locationManager.stopUpdatingLocation()
+        } else {
+            pauseButtonOutlet.setImage(UIImage(named: "pause.fill"), for: .normal)
+            startValueForTimer = Date()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerUpdater), userInfo: nil, repeats: true)
+            locationManager.startUpdatingLocation()
+        }
+        
+        print(currentName)
+        
+        pauseFlag = !pauseFlag
+        
+        activityDate = Date()
     }
     
-    @IBAction func stopButton(_ sender: UIButton) {
+    @IBAction func stopButton(_ sender: Any) {
+        locationManager.stopUpdatingLocation()
+        
+        let context = coreDataContainer.context
+        let activity = ActivityDataModel(context: context)
+        
+        activityDuration += currentDuration
+        timer?.invalidate()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let activityStartTime = dateFormatter.string(from: activityDate!)
+        let activityEndTime = dateFormatter.string(from: activityDate! + activityDuration)
+        
+        activity.date = activityDate
+        activity.distance = activityDistance
+        activity.duration = activityDuration
+        activity.startTime = activityStartTime
+        activity.endTime = activityEndTime
+        activity.typeName = currentName
+        
+        coreDataContainer.saveContext()
+        
+        let logView = MyActivityViewController(nibName: "MyActivityViewController", bundle: nil)
+        navigationController?.pushViewController(logView, animated: true)
     }
 }
 
@@ -116,24 +208,26 @@ extension CreateActivityViewController: UICollectionViewDataSource, UICollection
     }
 }
 
-var startLocation:CLLocation!
+/*var startLocation:CLLocation!
 var lastLocation:CLLocation!
 
-var traveledDistance:Double = 0
+var traveledDistance:Double = 0*/
 
 extension CreateActivityViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        startLocation = locations.first
+        //startLocation = locations.first
         guard let currentLocation = locations.first
         else {
             return
         }
         print("координаты вашего устройства", currentLocation.coordinate)
         
-        lastLocation = locations.last
+        /*lastLocation = locations.last
         traveledDistance += startLocation.distance(from: lastLocation)
-        
-        self.currentActivityDistance.text = String(traveledDistance)
+        let distanceStr = String(traveledDistance)
+        print(String(format: "%.5f%", distanceStr))
+        print("Ваше пройденное расстояние")
+        self.currentActivityDistance.text = String(traveledDistance)*/
         
         /*if currentLocation == nil {
             startLocation = locations.first as! CLLocation

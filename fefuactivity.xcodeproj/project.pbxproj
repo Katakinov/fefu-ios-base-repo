@@ -15,6 +15,9 @@
 		1DE4E5D1270A5CD0004A30CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DE4E5CF270A5CD0004A30CA /* LaunchScreen.storyboard */; };
 		9DC260DB279854CE002D0738 /* ShowInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC260DA279854CE002D0738 /* ShowInfoViewController.swift */; };
 		9DC260DD2799429E002D0738 /* MapCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC260DC2799429E002D0738 /* MapCollectionViewCell.swift */; };
+		9DC260E6279D6E87002D0738 /* activityModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DC260E4279D6E87002D0738 /* activityModel.xcdatamodeld */; };
+		9DC260E8279D73F7002D0738 /* CoreDataContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC260E7279D73F7002D0738 /* CoreDataContainer.swift */; };
+		9DC260EA279D76A4002D0738 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC260E9279D76A4002D0738 /* CoreDataController.swift */; };
 		9E38B34D274FDB6800CA13B8 /* RegViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B34C274FDB6800CA13B8 /* RegViewController.swift */; };
 		9E38B34F274FDB7800CA13B8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B34E274FDB7800CA13B8 /* AuthViewController.swift */; };
 		9E38B358274FEAFA00CA13B8 /* DemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38B356274FEAFA00CA13B8 /* DemoTableViewCell.swift */; };
@@ -34,6 +37,9 @@
 		1DE4E5D2270A5CD0004A30CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9DC260DA279854CE002D0738 /* ShowInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowInfoViewController.swift; sourceTree = "<group>"; };
 		9DC260DC2799429E002D0738 /* MapCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCollectionViewCell.swift; sourceTree = "<group>"; };
+		9DC260E5279D6E87002D0738 /* activityModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = activityModel.xcdatamodel; sourceTree = "<group>"; };
+		9DC260E7279D73F7002D0738 /* CoreDataContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataContainer.swift; sourceTree = "<group>"; };
+		9DC260E9279D76A4002D0738 /* CoreDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		9E38B34C274FDB6800CA13B8 /* RegViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegViewController.swift; sourceTree = "<group>"; };
 		9E38B34E274FDB7800CA13B8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		9E38B356274FEAFA00CA13B8 /* DemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableViewCell.swift; sourceTree = "<group>"; };
@@ -87,6 +93,9 @@
 				9E38B35C274FFA6400CA13B8 /* CreateActivityViewController.swift */,
 				9DC260DA279854CE002D0738 /* ShowInfoViewController.swift */,
 				9DC260DC2799429E002D0738 /* MapCollectionViewCell.swift */,
+				9DC260E4279D6E87002D0738 /* activityModel.xcdatamodeld */,
+				9DC260E7279D73F7002D0738 /* CoreDataContainer.swift */,
+				9DC260E9279D76A4002D0738 /* CoreDataController.swift */,
 			);
 			path = fefuactivity;
 			sourceTree = "<group>";
@@ -162,11 +171,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DC260E8279D73F7002D0738 /* CoreDataContainer.swift in Sources */,
 				9E38B358274FEAFA00CA13B8 /* DemoTableViewCell.swift in Sources */,
 				9E38B35D274FFA6400CA13B8 /* CreateActivityViewController.swift in Sources */,
 				9E38B35B274FEF9200CA13B8 /* MyActivityViewController.swift in Sources */,
 				1DE4E5C9270A5CCE004A30CA /* ViewController.swift in Sources */,
+				9DC260E6279D6E87002D0738 /* activityModel.xcdatamodeld in Sources */,
 				1DE4E5C5270A5CCE004A30CA /* AppDelegate.swift in Sources */,
+				9DC260EA279D76A4002D0738 /* CoreDataController.swift in Sources */,
 				9DC260DD2799429E002D0738 /* MapCollectionViewCell.swift in Sources */,
 				9E38B34F274FDB7800CA13B8 /* AuthViewController.swift in Sources */,
 				1DE4E5C7270A5CCE004A30CA /* SceneDelegate.swift in Sources */,
@@ -375,6 +387,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9DC260E4279D6E87002D0738 /* activityModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9DC260E5279D6E87002D0738 /* activityModel.xcdatamodel */,
+			);
+			currentVersion = 9DC260E5279D6E87002D0738 /* activityModel.xcdatamodel */;
+			path = activityModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1DE4E5B9270A5CCE004A30CA /* Project object */;
 }

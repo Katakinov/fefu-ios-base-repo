@@ -204,13 +204,13 @@
         <!--Активность-->
         <scene sceneID="sIc-44-mgA">
             <objects>
-                <viewController id="9Bp-H4-bJO" customClass="MyActivityViewController" customModule="fefuactivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyActivityViewController" id="9Bp-H4-bJO" customClass="MyActivityViewController" customModule="fefuactivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gzm-OE-v6J">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ihh-OW-1wM">
-                                <rect key="frame" x="0.0" y="729" width="375" height="49"/>
+                                <rect key="frame" x="0.0" y="695" width="375" height="83"/>
                                 <items>
                                     <tabBarItem title="Активность" image="circle" catalog="system" selectedImage="circle.fill" id="GqU-A5-Qux">
                                         <color key="badgeColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
@@ -222,7 +222,7 @@
                                 <color key="selectedImageTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             </tabBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZJS-Zx-mMc">
-                                <rect key="frame" x="20" y="683" width="335" height="36"/>
+                                <rect key="frame" x="20" y="649" width="335" height="36"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Старт">
@@ -234,7 +234,7 @@
                                 </connections>
                             </button>
                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-ik-CTg">
-                                <rect key="frame" x="0.0" y="88" width="375" height="585"/>
+                                <rect key="frame" x="0.0" y="88" width="375" height="551"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hCv-wM-WrX">
@@ -548,7 +548,7 @@
                                                             <constraint firstAttribute="width" constant="60" id="Otq-t4-FcY"/>
                                                         </constraints>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="filled" image="pause.fill" catalog="system">
+                                                        <buttonConfiguration key="configuration" style="filled" image="play" catalog="system" title=" ">
                                                             <color key="baseForegroundColor" systemColor="linkColor"/>
                                                             <color key="baseBackgroundColor" red="0.92510665069999998" green="0.81269634140000002" blue="1" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
@@ -616,9 +616,12 @@
                         <outlet property="collectionView" destination="87e-tG-8Uz" id="2Nz-Ff-hK3"/>
                         <outlet property="currentActivityDistance" destination="Jf9-cr-eev" id="JtZ-8s-xfv"/>
                         <outlet property="currentActivityName" destination="cq8-mK-KUl" id="fy9-L3-0Za"/>
+                        <outlet property="finishButtonOutlet" destination="PI4-Uh-REZ" id="yWY-7S-O8f"/>
                         <outlet property="mapView" destination="eyE-k7-RF3" id="X8D-FJ-hAg"/>
+                        <outlet property="pauseButtonOutlet" destination="At3-cN-xFN" id="erC-Ld-MJM"/>
                         <outlet property="startCont" destination="Ra8-Fp-cUL" id="TfY-An-3bp"/>
                         <outlet property="stopCont" destination="o5v-oZ-X7N" id="ZIl-PT-59t"/>
+                        <outlet property="timerLabel" destination="t5e-Da-cOp" id="K6Y-Sx-ofc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8l-o3-MN9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -780,7 +783,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="qdJ-Nk-Oco"/>
+        <segue reference="FcJ-Z3-WWD"/>
         <segue reference="cI4-aQ-2aA"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -793,7 +796,7 @@
         <image name="circle.fill" catalog="system" width="128" height="121"/>
         <image name="eye" catalog="system" width="128" height="81"/>
         <image name="flag.fill" catalog="system" width="128" height="121"/>
-        <image name="pause.fill" catalog="system" width="116" height="128"/>
+        <image name="play" catalog="system" width="120" height="128"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
