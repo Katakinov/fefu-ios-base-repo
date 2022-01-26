@@ -177,9 +177,7 @@ class CreateActivityViewController: UIViewController {
         activity.typeName = currentName
         
         coreDataContainer.saveContext()
-        
-        let logView = MyActivityViewController(nibName: "MyActivityViewController", bundle: nil)
-        navigationController?.pushViewController(logView, animated: true)
+    
     }
 }
 

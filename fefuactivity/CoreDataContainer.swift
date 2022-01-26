@@ -12,7 +12,7 @@ class CoreDataContainer {
     
     private init() { }
     
-    private static let persistentContainerName = "ActivityDataModel"
+    private static let persistentContainerName = "activityModel"
     
     private lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: Self.persistentContainerName)
