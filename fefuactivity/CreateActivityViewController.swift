@@ -60,6 +60,7 @@ class CreateActivityViewController: UIViewController {
             }
             userLocationHistory.append(userLocation)
             currentActivityDistance.text = String(format: "%.2f км", activityDistance / 1000)
+            
         }
     }
     
@@ -110,7 +111,7 @@ class CreateActivityViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        //locationManager.startUpdatingLocation()
         
         mapView.showsUserLocation = true
         mapView.delegate = self
@@ -129,20 +130,26 @@ class CreateActivityViewController: UIViewController {
             startCont.isHidden = true
             stopCont.isHidden = false
         }
+        startValueForTimer = Date()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerUpdater), userInfo: nil, repeats: true)
+        locationManager.startUpdatingLocation()
     }
     
     @IBAction func pauseButton(_ sender: Any) {
         userLocationHistory = []
         userLocation = nil
+        timer?.invalidate()
         
+        pauseFlag = !pauseFlag
+
         if !pauseFlag {
-            pauseButtonOutlet.setImage(UIImage(named: "play"), for: .normal)
+            //pauseButtonOutlet.setImage(UIImage(named: "play.fill"), for: .normal)
             activityDuration += currentDuration
             currentDuration = TimeInterval()
             timer?.invalidate()
             locationManager.stopUpdatingLocation()
         } else {
-            pauseButtonOutlet.setImage(UIImage(named: "pause.fill"), for: .normal)
+            //pauseButtonOutlet.setImage(UIImage(named: "pause.fill"), for: .normal)
             startValueForTimer = Date()
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerUpdater), userInfo: nil, repeats: true)
             locationManager.startUpdatingLocation()
@@ -150,7 +157,6 @@ class CreateActivityViewController: UIViewController {
         
         print(currentName)
         
-        pauseFlag = !pauseFlag
         
         activityDate = Date()
     }

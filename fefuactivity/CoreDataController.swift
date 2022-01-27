@@ -8,12 +8,12 @@
 import Foundation
 
 class CoreDataController {
-    func fetch() throws -> [ActivityDataModel] {
+    /*func fetch() throws -> [ActivityDataModel] {
         let context = CoreDataContainer.instance.context
         let request = ActivityDataModel.fetchRequest()
         let rawActivities = try context.fetch(request)
         return rawActivities
-    }
+    }*/
     
     func saveActivity(_ distance: Double,
                       _ duration: Double,
