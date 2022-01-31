@@ -5,6 +5,7 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
 
     @IBOutlet weak var emptyState: UIView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var startBut: UIButton!
     
     //@IBOutlet var titleHidden: [UITextView]!
     var currentKM: String = "0"
@@ -27,7 +28,7 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.register(nib, forCellReuseIdentifier: "DemoTableViewCell")
         tableView.delegate = self
         tableView.dataSource = self
-        
+        startBut.layer.cornerRadius = 15
     }
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -100,15 +101,12 @@ class MyActivityViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /*let vc = segue.destination as! ShowInfoViewController*/
-        performSegue(withIdentifier: "ShowInfo", sender: tableView.cellForRow(at: indexPath))
-        
-        
-        
         
         currentActivityName = activityName[indexPath.row]
         currentTime = activityHours[indexPath.row]
         currentKM = activityKm[indexPath.row]
         currentAgo = activityAgo[indexPath.row]
+        performSegue(withIdentifier: "ShowInfo", sender: tableView.cellForRow(at: indexPath))
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

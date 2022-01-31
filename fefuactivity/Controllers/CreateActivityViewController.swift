@@ -20,6 +20,7 @@ class CreateActivityViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBOutlet weak var finishButtonOutlet: UIButton!
+    @IBOutlet weak var startButOutlet: UIButton!
     
     
     var activityType = ["Бег", "Вело", "Прыг", "Плавь"]
@@ -29,6 +30,7 @@ class CreateActivityViewController: UIViewController {
     private var timer: Timer?
     private var activityDuration: TimeInterval = TimeInterval()
     private var startValueForTimer: Date?
+    private var startTimer: Date?
     private var currentDuration: TimeInterval = TimeInterval()
     private var pauseFlag: Bool = true
     private var activityDate: Date?
@@ -60,6 +62,7 @@ class CreateActivityViewController: UIViewController {
             }
             userLocationHistory.append(userLocation)
             currentActivityDistance.text = String(format: "%.2f км", activityDistance / 1000)
+            
         }
     }
     
@@ -110,7 +113,7 @@ class CreateActivityViewController: UIViewController {
         
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+        //locationManager.startUpdatingLocation()
         
         mapView.showsUserLocation = true
         mapView.delegate = self
@@ -118,6 +121,9 @@ class CreateActivityViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        finishButtonOutlet.layer.cornerRadius = 30
+        pauseButtonOutlet.layer.cornerRadius = 30
+        startButOutlet.layer.cornerRadius = 15
         for i in 0...3{
             let image = UIImage(named: "image\(i)")!
             images.append(image)
@@ -129,20 +135,27 @@ class CreateActivityViewController: UIViewController {
             startCont.isHidden = true
             stopCont.isHidden = false
         }
+        startTimer = Date()
+        startValueForTimer = Date()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerUpdater), userInfo: nil, repeats: true)
+        locationManager.startUpdatingLocation()
     }
     
     @IBAction func pauseButton(_ sender: Any) {
         userLocationHistory = []
         userLocation = nil
+        timer?.invalidate()
         
+        pauseFlag = !pauseFlag
+
         if !pauseFlag {
-            pauseButtonOutlet.setImage(UIImage(named: "play"), for: .normal)
+            //pauseButtonOutlet.setImage(UIImage(named: "play.fill"), for: .normal)
             activityDuration += currentDuration
             currentDuration = TimeInterval()
             timer?.invalidate()
             locationManager.stopUpdatingLocation()
         } else {
-            pauseButtonOutlet.setImage(UIImage(named: "pause.fill"), for: .normal)
+            //pauseButtonOutlet.setImage(UIImage(named: "pause.fill"), for: .normal)
             startValueForTimer = Date()
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerUpdater), userInfo: nil, repeats: true)
             locationManager.startUpdatingLocation()
@@ -150,7 +163,6 @@ class CreateActivityViewController: UIViewController {
         
         print(currentName)
         
-        pauseFlag = !pauseFlag
         
         activityDate = Date()
     }
@@ -166,8 +178,8 @@ class CreateActivityViewController: UIViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
-        let activityStartTime = dateFormatter.string(from: activityDate!)
-        let activityEndTime = dateFormatter.string(from: activityDate! + activityDuration)
+        let activityStartTime = dateFormatter.string(from: startTimer!)
+        let activityEndTime = dateFormatter.string(from: startTimer! + activityDuration)
         
         activity.date = activityDate
         activity.distance = activityDistance
@@ -177,9 +189,7 @@ class CreateActivityViewController: UIViewController {
         activity.typeName = currentName
         
         coreDataContainer.saveContext()
-        
-        let logView = MyActivityViewController(nibName: "MyActivityViewController", bundle: nil)
-        navigationController?.pushViewController(logView, animated: true)
+    
     }
 }
 
