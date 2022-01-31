@@ -11,9 +11,11 @@ class AuthViewController: UIViewController {
 
     @IBOutlet weak var loginField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var againBut: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        againBut.layer.cornerRadius = 15
     }
     
     @IBAction func passwordEye(_ sender: UIButton) {

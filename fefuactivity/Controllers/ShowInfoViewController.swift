@@ -19,6 +19,7 @@ class ShowInfoViewController: UIViewController {
     @IBOutlet weak var activityDistance: UILabel!
     @IBOutlet weak var activityLaterTime: UILabel!
     @IBOutlet weak var activityTimeInfo: UILabel!
+    @IBOutlet weak var startBut: UIButton!
     
     
     override func viewDidLoad() {
@@ -28,6 +29,8 @@ class ShowInfoViewController: UIViewController {
         activityLaterTime.text = laterTime + "минут"
         activityTimeInfo.text = durationTime + "минут назад"
         activityName.text = activityNameInfo
+        startBut.layer.cornerRadius = 15
+        
     }
     
 }

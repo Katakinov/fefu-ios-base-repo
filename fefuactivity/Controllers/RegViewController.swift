@@ -10,11 +10,14 @@ import UIKit
 class RegViewController: UIViewController {
 
     @IBOutlet weak var passwordField1: UITextField!
+    @IBOutlet weak var againBut: UIButton!
     @IBOutlet weak var passwordField2: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        againBut.layer.cornerRadius = 15
+        
     }
     
     @IBAction func passwordEye1(_ sender: UIButton) {

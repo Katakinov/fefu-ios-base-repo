@@ -20,6 +20,7 @@ class CreateActivityViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var pauseButtonOutlet: UIButton!
     @IBOutlet weak var finishButtonOutlet: UIButton!
+    @IBOutlet weak var startButOutlet: UIButton!
     
     
     var activityType = ["Бег", "Вело", "Прыг", "Плавь"]
@@ -120,6 +121,9 @@ class CreateActivityViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        finishButtonOutlet.layer.cornerRadius = 30
+        pauseButtonOutlet.layer.cornerRadius = 30
+        startButOutlet.layer.cornerRadius = 15
         for i in 0...3{
             let image = UIImage(named: "image\(i)")!
             images.append(image)
